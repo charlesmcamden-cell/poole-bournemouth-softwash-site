@@ -30,7 +30,14 @@ body {
   color: var(--ink);
   background: var(--paper);
   line-height: 1.55;
-  overflow-x: hidden;
+  /* MUST be "clip", not "hidden". overflow-x:hidden forces overflow-y to compute
+     to "auto" (the spec disallows visible on one axis when the other is hidden),
+     which turns <body> into a scroll container. Native fragment navigation and
+     scrollIntoView() then target <body> — which isn't actually scrollable — and
+     stop there instead of scrolling the viewport, so every in-page #anchor link
+     silently does nothing (this broke the "Get a free quote" CTA and the skip
+     link sitewide). overflow-x:clip clips without creating a scroll container. */
+  overflow-x: clip;
 }
 img { max-width: 100%; height: auto; display: block; }
 a { color: var(--brand-dark); }
@@ -344,7 +351,9 @@ main > .wrap > .section:first-child, main > .section:first-child { margin-top: 1
   transition: background .15s ease, border-color .15s ease;
 }
 .news-cat-chip:hover { background: var(--paper-tint); border-color: var(--brand); }
-.news-block { scroll-margin-top: 90px; }
+/* The header is position:sticky, so anything an #anchor lands on must reserve
+   room for it or it renders underneath the header. */
+.news-block, .quote-section, #main { scroll-margin-top: 90px; }
 .news-block-head { border-top: 3px solid var(--brand); padding-top: .9em; margin-bottom: 1.4em; position: relative; }
 .news-block-head h2 { margin: 0 0 .25em; }
 .news-block-head p { margin: 0; color: var(--ink-soft); max-width: 62ch; }
