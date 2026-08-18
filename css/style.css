@@ -356,3 +356,29 @@ main > .wrap > .section:first-child, main > .section:first-child { margin-top: 1
 
 /* ---------- Legal pages ---------- */
 .legal-copy h2 { margin-top: 1.4em; }
+
+/* ---------- Inline data charts (guide articles) ---------- */
+.chart-figure {
+  margin: 1.6em 0; padding: 1.4em 1.2em 1em; background: var(--paper-soft);
+  border: 1px solid var(--line); border-radius: var(--radius-lg);
+}
+.bar-chart { width: 100%; height: auto; display: block; overflow: visible; }
+.chart-axis { stroke: var(--line); stroke-width: 1.5; }
+.bar-chart rect { transition: opacity .15s ease; }
+.bar-chart rect:hover { opacity: .82; }
+.chart-value { font-size: 13px; font-weight: 700; fill: var(--ink); font-family: inherit; }
+.chart-label { font-size: 12px; fill: var(--ink-soft); font-family: inherit; }
+.chart-figure figcaption { text-align: center; font-size: .85rem; color: var(--ink-soft); margin-top: .6em; }
+.chart-source { font-size: .82rem; color: var(--ink-soft); margin-top: -.4em; }
+.chart-source a { color: var(--brand-dark); }
+
+/* ---------- Stat callouts (guide articles) ---------- */
+.stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1.2em; margin: 1.6em 0; }
+.stat-tile {
+  background: var(--paper-soft); border: 1px solid var(--line); border-radius: var(--radius-lg);
+  padding: 1.3em 1.2em; text-align: center;
+}
+.stat-tile .stat-num { display: block; font-size: 2.1rem; font-weight: 800; color: var(--brand); line-height: 1.1; }
+.stat-tile .stat-label { display: block; margin-top: .4em; font-size: .9rem; color: var(--ink-soft); }
+.band-dark .stat-tile { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.16); }
+.band-dark .stat-tile .stat-label { color: #cfe0e6; }

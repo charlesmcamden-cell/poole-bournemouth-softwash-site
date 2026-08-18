@@ -18,6 +18,7 @@ Run:  python3 generate_site.py
 Output: ./dist/
 """
 import os
+import json
 import shutil
 from html import escape
 from datetime import date
@@ -302,3 +303,123 @@ def simple_hero(eyebrow, h1_text, subtitle, ctas_html=""):
 
 def h1(text):
     return f"<h1>{escape(text)}</h1>"
+
+
+# ---------------------------------------------------------------------------
+# Structured data (JSON-LD). Built with json.dumps rather than manual string
+# concatenation so nothing here can produce broken JSON if a description or
+# name ever contains a quote or ampersand.
+# ---------------------------------------------------------------------------
+
+def local_business_schema():
+    """Sitewide Organization/LocalBusiness markup. No street address is given
+    on purpose (this is a service-area business, not a shopfront) and no
+    aggregateRating/review count is included — SEO.md rule 1 bars invented
+    reviews, and we don't have real ones yet."""
+    data = {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": BRAND,
+        "telephone": PHONE_TEL.replace("tel:", ""),
+        "email": EMAIL,
+        "url": f"{BASE_URL}/",
+        "image": f"{BASE_URL}/images/logo.png",
+        "areaServed": [
+            {"@type": "City", "name": "Poole"},
+            {"@type": "City", "name": "Bournemouth"},
+            {"@type": "City", "name": "Christchurch"},
+        ],
+        "priceRange": "££",
+    }
+    return f'<script type="application/ld+json">{json.dumps(data)}</script>'
+
+
+def service_schema(service_name, description, areas=None):
+    areas = areas or ["Poole", "Bournemouth", "Christchurch"]
+    data = {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "serviceType": service_name,
+        "name": service_name,
+        "description": description,
+        "provider": {
+            "@type": "LocalBusiness",
+            "name": BRAND,
+            "telephone": PHONE_TEL.replace("tel:", ""),
+        },
+        "areaServed": [{"@type": "City", "name": a} for a in areas],
+    }
+    return f'<script type="application/ld+json">{json.dumps(data)}</script>'
+
+
+def article_schema(headline, description, image, date_published="2026-08-18"):
+    data = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": headline,
+        "description": description,
+        "image": f"{BASE_URL}{image}",
+        "datePublished": date_published,
+        "author": {"@type": "Organization", "name": BRAND},
+        "publisher": {"@type": "Organization", "name": BRAND,
+                       "logo": {"@type": "ImageObject", "url": f"{BASE_URL}/images/logo.png"}},
+    }
+    return f'<script type="application/ld+json">{json.dumps(data)}</script>'
+
+
+def stat_row(stats):
+    """A row of big-number callouts for a single headline statistic each —
+    the dataviz house rule that not every number needs a chart; a stat tile
+    is the right form when there's one figure to land, not a distribution.
+    stats: list of (number_text, label_text)."""
+    tiles = "".join(
+        f'<div class="stat-tile"><span class="stat-num">{escape(num)}</span>'
+        f'<span class="stat-label">{escape(label)}</span></div>'
+        for num, label in stats
+    )
+    return f'<div class="stat-row">{tiles}</div>'
+
+
+def bar_chart_svg(caption, unit, data, highlight_label=None, y_max=None):
+    """Single-hue sequential bar chart as inline SVG (no JS dependency, so it
+    renders identically with scripting off and is fully crawlable/indexable
+    text+shapes rather than a raster image). data: list of (label, value).
+    One bar may be highlighted in the accent colour to call out a specific
+    point (e.g. the wettest month) — that's the only second colour used, and
+    it's a callout, not a second data series.
+    Follows the dataviz house rules: one hue for magnitude, thin bars with
+    4px rounded top corners anchored to a shared baseline, direct value
+    labels instead of a legend (single series), recessive axis line."""
+    W, H = 720, 300
+    pad_l, pad_r, pad_t, pad_b = 12, 12, 30, 46
+    plot_w = W - pad_l - pad_r
+    plot_h = H - pad_t - pad_b
+    n = len(data)
+    gap = 14
+    bar_w = (plot_w - gap * (n - 1)) / n
+    vmax = y_max or max(v for _, v in data) * 1.18
+    bars, labels = [], []
+    for i, (label, value) in enumerate(data):
+        x = pad_l + i * (bar_w + gap)
+        bar_h = (value / vmax) * plot_h
+        y = pad_t + plot_h - bar_h
+        is_hi = label == highlight_label
+        fill = "var(--accent)" if is_hi else "var(--brand)"
+        radius = min(6, bar_w / 2)
+        bars.append(
+            f'<rect x="{x:.1f}" y="{y:.1f}" width="{bar_w:.1f}" height="{max(bar_h,2):.1f}" '
+            f'rx="{radius:.1f}" ry="{radius:.1f}" fill="{fill}"></rect>'
+            f'<text x="{x + bar_w/2:.1f}" y="{y-8:.1f}" text-anchor="middle" class="chart-value">{value:g}{unit}</text>'
+            f'<text x="{x + bar_w/2:.1f}" y="{H-pad_b+22:.1f}" text-anchor="middle" class="chart-label">{escape(str(label))}</text>'
+        )
+    baseline_y = pad_t + plot_h
+    svg = f"""
+    <figure class="chart-figure">
+      <svg viewBox="0 0 {W} {H}" role="img" aria-label="{escape(caption)}" class="bar-chart">
+        <line x1="{pad_l}" y1="{baseline_y}" x2="{W-pad_r}" y2="{baseline_y}" class="chart-axis"></line>
+        {''.join(bars)}
+      </svg>
+      <figcaption>{caption}</figcaption>
+    </figure>
+    """
+    return svg
