@@ -223,9 +223,14 @@ main > .wrap > .section:first-child, main > .section:first-child { margin-top: 1
   display: block; text-decoration: none; color: inherit; background: var(--paper);
   border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden;
   transition: box-shadow .2s ease, transform .2s ease; box-shadow: var(--shadow-sm);
-  /* Same Safari border-radius/transform clipping issue as .split img (this card itself gets
-     translateY() from .reveal-stagger) — mask forces correct clipping on all four corners. */
-  -webkit-mask-image: -webkit-radial-gradient(white, black);
+}
+/* Same Safari border-radius/transform clipping issue as .split img (this card itself gets
+   translateY() from .reveal-stagger) — mask forces correct clipping on all four corners.
+   Scoped to Safari/WebKit only via the -webkit-touch-callout feature query: Chrome and
+   Firefox also understand the -webkit-mask-image property (it's not Safari-exclusive), so
+   applying it unscoped put a faint vignette on the image edges in every browser. */
+@supports (-webkit-touch-callout: none) {
+  .service-card { -webkit-mask-image: -webkit-radial-gradient(white, black); }
 }
 .service-card:hover { box-shadow: var(--shadow-md); transform: translateY(-5px); }
 .service-card .img-wrap { overflow: hidden; }
@@ -317,12 +322,17 @@ main > .wrap > .section:first-child, main > .section:first-child { margin-top: 1
 .split { display: grid; grid-template-columns: 1fr 1fr; gap: 2.6em; align-items: center; }
 .split img {
   border-radius: var(--radius-lg); box-shadow: var(--shadow-md); width: 100%; height: 420px; object-fit: cover;
-  /* Safari fails to keep border-radius clipping an <img> when an ancestor has a CSS transform
-     (our .reveal scroll animation sets transform on the parent .split section) — without this,
-     one corner of the image renders square instead of rounded. Forcing a mask forces Safari to
-     recompute the clip correctly. https://bugs.webkit.org/show_bug.cgi?id=98538 */
-  -webkit-mask-image: -webkit-radial-gradient(white, black);
   transform: translateZ(0);
+}
+/* Safari fails to keep border-radius clipping an <img> when an ancestor has a CSS transform
+   (our .reveal scroll animation sets transform on the parent .split section) — without this,
+   one corner of the image renders square instead of rounded. Forcing a mask forces Safari to
+   recompute the clip correctly. https://bugs.webkit.org/show_bug.cgi?id=98538
+   Scoped to Safari/WebKit only via the -webkit-touch-callout feature query: Chrome and Firefox
+   also understand -webkit-mask-image (it's not Safari-exclusive), so applying it unscoped put
+   a faint vignette/fade on every image's edges in every browser, not just Safari. */
+@supports (-webkit-touch-callout: none) {
+  .split img { -webkit-mask-image: -webkit-radial-gradient(white, black); }
 }
 .split.reverse .split-media { order: 2; }
 @media (max-width: 860px) {
