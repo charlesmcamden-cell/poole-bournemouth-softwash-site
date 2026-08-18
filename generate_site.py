@@ -30,8 +30,8 @@ DIST = os.path.join(ROOT, "dist")
 # ---------------------------------------------------------------------------
 BASE_URL = "https://www.poolebournemouthsoftwash.co.uk"  # TODO: confirm real domain before cutover
 BRAND = "Poole & Bournemouth Softwash"
-PHONE_DISPLAY = "[PHONE NUMBER TODO]"          # TODO: replace with the real number, site-wide
-PHONE_TEL = "tel:+44TODO"                       # TODO: replace with tel:+44xxxxxxxxxx
+PHONE_DISPLAY = "0330 122 8391"
+PHONE_TEL = "tel:+443301228391"
 EMAIL = "leads@eapionageseo.co.uk"
 FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID"  # TODO: replace after Formspree signup — see SETUP.md
 TODAY = date.today().isoformat()

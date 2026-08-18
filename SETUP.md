@@ -4,19 +4,15 @@ This site was built as static HTML/CSS/JS (no server or framework required)
 following the house SEO.md standard you uploaded: every page has its own
 real URL, its own title/description/canonical, one h1, alt text on every
 image, a generated robots.txt/sitemap.xml, and no invented reviews, ratings,
-stats or years-in-business anywhere. Three things are placeholders on
-purpose — fill these in before it goes live.
+stats or years-in-business anywhere. A couple of things were placeholders
+on purpose — status below.
 
-## 1. Phone number (currently `[PHONE NUMBER TODO]`)
+## 1. Phone number — done
 
-Per the "never fabricate" rule, a phone number wasn't invented — publishing
-a fake one on a live lead site would mislead callers. To set the real one:
-
-1. Open `generate_site.py`
-2. Set `PHONE_DISPLAY = "01202 XXX XXX"` (however you want it shown)
-3. Set `PHONE_TEL = "tel:+441202XXXXXX"` (the `tel:` link format — no
-   spaces, UK country code)
-4. Re-run `python3 build.py` — every page updates from this one place.
+`PHONE_DISPLAY` is set to `0330 122 8391` and `PHONE_TEL` to
+`tel:+443301228391` in `generate_site.py`, live site-wide (header, footer,
+About, Contact). To change it later: edit those two constants and re-run
+`python3 build.py` — every page updates from this one place.
 
 ## 2. Lead form → Formspree
 
