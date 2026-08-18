@@ -43,11 +43,14 @@ NAV = [
     ("/gutter-and-fascia-cleaning/", "Gutter & Fascia"),
     ("/roof-cleaning/", "Roof Cleaning"),
     ("/areas/", "Areas"),
+    ("/guides/", "News & Info"),
     ("/contact/", "Contact"),
 ]
-# About, FAQ and Guides are one click away via the footer on every page
-# (Rule 9: reachable from another page in plain HTML), just not in the
-# primary nav — keeps the header usable at normal desktop widths.
+# About and FAQ are one click away via the footer on every page (Rule 9:
+# reachable from another page in plain HTML), just not in the primary nav —
+# keeps the header usable at normal desktop widths. News & Info earns a nav
+# slot because it's the hub for every article and was otherwise footer-only,
+# which made the articles effectively unfindable from the top of the site.
 
 PAGES = []  # populated by page() as pages are defined; drives sitemap.xml
 
@@ -103,6 +106,26 @@ def lead_form(source_page, compact=False):
         See our <a href="/privacy-policy/">privacy policy</a>.</p>
       </form>
     </div>
+    """
+
+
+def quote_section(source_page, image, image_alt, heading, text_html):
+    """The shared quote-form band, as a two-column layout: an image + short
+    on-topic copy on the left, the lead form on the right. Replaces the old
+    lone centered form (which left large empty margins on wide screens) —
+    same <section id="quote"> anchor and lead_form() underneath, so nothing
+    that links to #quote or relies on the form itself needs to change."""
+    return f"""
+    <section class="section quote-section" id="quote">
+      <div class="wrap quote-grid">
+        <div class="quote-media">
+          {img(image, image_alt, 400, 270)}
+          <h3>{escape(heading)}</h3>
+          <p>{text_html}</p>
+        </div>
+        {lead_form(source_page)}
+      </div>
+    </section>
     """
 
 
@@ -213,7 +236,7 @@ def footer_html():
           <ul>
             <li><a href="/about/">About</a></li>
             <li><a href="/faq/">FAQ</a></li>
-            <li><a href="/guides/">Guides</a></li>
+            <li><a href="/guides/">News &amp; Info</a></li>
             <li><a href="/contact/">Contact</a></li>
             <li><a href="/privacy-policy/">Privacy policy</a></li>
             <li><a href="/terms/">Terms</a></li>

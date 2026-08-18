@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from html import escape
 from generate_site import (
-    page, img, lead_form, h1, page_hero, simple_hero,
+    page, img, lead_form, h1, page_hero, simple_hero, quote_section,
     PAGES, BASE_URL, BRAND, PHONE_DISPLAY, PHONE_TEL,
     local_business_schema, service_schema, article_schema, bar_chart_svg, stat_row,
 )
@@ -302,9 +302,9 @@ page(
   </div>
 </section>
 
-<section class="section quote-section" id="quote">
-  {lead_form("pressure-washing")}
-</section>
+{quote_section("pressure-washing", "clean-house-driveway.jpg", "A clean paved driveway after pressure washing",
+  "See the difference before you commit",
+  "Driveway and patio pressure washing removes years of ground-in dirt, algae and weed growth without damaging the surface underneath — when the pressure is matched to the material. Tell us about your job below and we'll call back with a price, usually the same day.")}
 """,
 )
 
@@ -403,9 +403,9 @@ page(
   <p>Most UK guidance settles on clearing gutters once or twice a year — once for properties with little overhead tree cover, twice for anywhere under or near trees, generally timed for after autumn leaf fall and again before the wetter spring months. That's a starting point rather than a fixed schedule: a gutter running under a mature oak or sycamore can silt up well inside six months, while one on an exposed, tree-free roofline might comfortably go longer. Read the full breakdown in our <a href="/guides/how-often-should-you-clean-your-gutters-uk/">gutter cleaning frequency guide</a>.</p>
 </section>
 
-<section class="section quote-section" id="quote">
-  {lead_form("gutter-and-fascia-cleaning")}
-</section>
+{quote_section("gutter-and-fascia-cleaning", "gutter-downpipe.jpg", "A downpipe fixed to the exterior wall of a house",
+  "Blocked gutters cause damage you can't see yet",
+  "Overflowing gutters push water down fascias and into brickwork long before you'd notice a leak inside. A clear-out and check now is far cheaper than the repair later. Get a free quote below and we'll tell you honestly whether it's needed.")}
 """,
 )
 
@@ -495,9 +495,9 @@ page(
   <p class="chart-source">Source: <a href="https://en.climate-data.org/europe/united-kingdom/england/bournemouth-6564/">climate averages for Bournemouth, en.climate-data.org</a>. That doesn't mean spring is the only time we'll quote — a roof that's visibly heavy with moss shouldn't wait for a specific month if it's already holding moisture against the tiles.</p>
 </section>
 
-<section class="section quote-section" id="quote">
-  {lead_form("roof-cleaning")}
-</section>
+{quote_section("roof-cleaning", "moss-covered-roof.jpg", "A moss-covered tiled roof before soft washing",
+  "A proper assessment, not a guess over the phone",
+  "Roof type, pitch and access all affect the price and the method we'd use, so we like to see photos or details before quoting rather than guessing. Fill in the form and we'll come back with a genuine number, not a placeholder.")}
 """,
 )
 
@@ -554,9 +554,9 @@ page(
   <p>Postcode-wise that's roughly BH1 through BH23, though the coverage genuinely follows where properties actually are rather than a strict postcode map — a road right on the edge of one of these boundaries is still worth asking about, even if it isn't listed by name on any of the three town pages below. When in doubt, the fastest way to find out is simply to ask when you request a quote rather than trying to work it out yourself from a postcode list alone.</p>
 </section>
 
-<section class="section quote-section" id="quote">
-  {lead_form("areas-hub")}
-</section>
+{quote_section("areas-hub", "garden-path.jpg", "A clean, curved brick driveway bordered by planting",
+  "Local crews, not a call centre",
+  "We work Poole, Bournemouth and Christchurch directly, so whichever town you're in, you're talking to someone who covers your street, not a national franchise reading from a script. Tell us where you are and what needs doing.")}
 """,
 )
 
@@ -604,9 +604,9 @@ page(
   <p>Parkstone in particular sits in between the two — close enough to the water for some salt effect, with enough established tree-lined streets that gutter clearing frequency matters as much as render staining does. It's a good, representative example of why we always ask about the specific property first, not just the town name alone, before pricing anything up for a Poole customer. For more on exactly how salt air affects a property, see our <a href="/guides/coastal-salt-air-property-maintenance/">coastal salt air &amp; property maintenance guide</a>.</p>
 </section>
 
-<section class="section quote-section" id="quote">
-  {lead_form("areas-poole")}
-</section>
+{quote_section("areas-poole", "poole-harbour.jpg", "Fishing boat in Poole Harbour, Dorset",
+  "Covering Poole, harbour to Old Town",
+  "From the marina down to Poole Old Town's older properties, we adjust the approach to the building rather than using one method everywhere. Let us know your postcode below and we'll confirm we cover it — we almost always do.")}
 """,
 )
 
@@ -653,9 +653,9 @@ page(
   <p>Boscombe and the eastern seafront share some of Southbourne's tree-lined character further back from the beach itself, while the immediate town-centre core — around the Square and the Lower Gardens — is more built-up with less overhead cover. Either way, the underlying services are the same three; only the frequency recommendation shifts based on what's actually overhead and how close the property sits to open water — which is exactly what we ask about, street by street, before quoting anywhere in Bournemouth.</p>
 </section>
 
-<section class="section quote-section" id="quote">
-  {lead_form("areas-bournemouth")}
-</section>
+{quote_section("areas-bournemouth", "bournemouth-pier.jpg", "Bournemouth Pier and seafront",
+  "Covering Bournemouth, seafront to suburbs",
+  "Salt air off the seafront ages driveways and render faster than inland properties, which is something we factor into the quote, not just the clean itself. Tell us your postcode below and we'll get back to you the same day.")}
 """,
 )
 
@@ -703,9 +703,9 @@ page(
   <p>Mudeford Quay and the harbourside properties closest to the water share some of Poole's salt-air characteristics too, on top of the general river-valley humidity — the combination is part of why we treat Christchurch's coastal fringe as its own case rather than assuming it behaves exactly like the town centre a couple of miles inland. That combination of salt and standing humidity is, if anything, the most demanding set of conditions we're asked to quote for anywhere across the three Dorset towns we cover.</p>
 </section>
 
-<section class="section quote-section" id="quote">
-  {lead_form("areas-christchurch")}
-</section>
+{quote_section("areas-christchurch", "christchurch-priory.jpg", "Christchurch Priory tower, Dorset",
+  "Covering Christchurch, including the older town centre",
+  "Christchurch's town centre has a genuine number of older and listed buildings, and we check that before quoting rather than after starting the job. Let us know what you need cleaned below and we'll call back with a price.")}
 """,
 )
 
@@ -915,82 +915,145 @@ page(
 {_faq_items_html}
 </div>
 </div>
-<section class="section quote-section" id="quote">
-  {lead_form("faq")}
-</section>
+{quote_section("faq", "hero-pressure-washing.jpg", "Professional pressure washing equipment in use",
+  "Still got a question we haven't covered?",
+  "The list above answers what we're asked most, but every property is a little different. Send us the details below and we'll answer directly, or call back with a price if you're ready for one.")}
 """,
 )
 
 # ===========================================================================
 # GUIDES HUB
 # ===========================================================================
+# Category structure for the News & Info hub. Kept as data rather than 11
+# hand-written cards so a new article is one tuple, and so the category a
+# piece sits in can never drift from the card that renders it.
+NEWS_CATEGORIES = [
+    {
+        "name": "Roofs & Moss",
+        "intro": "Why moss keeps coming back, which cleaning method suits which roof, and how shade changes the answer.",
+        "articles": [
+            ("/guides/roof-moss-soft-wash-vs-pressure-wash/", "moss-covered-roof.jpg",
+             "A moss-covered tiled roof", "Roof Moss: Soft Wash vs Pressure Wash",
+             "Two very different methods both get called &ldquo;roof cleaning&rdquo; — and they don't carry the same risk to your tiles."),
+            ("/guides/north-facing-shaded-roofs-moss/", "roofer-guttering.jpg",
+             "A worker inspecting a roofline and roof slope", "Why North-Facing Roofs Need Cleaning More",
+             "The same roof can have two different moss problems depending on which way each slope faces."),
+        ],
+    },
+    {
+        "name": "Driveways & Paving",
+        "intro": "What a driveway clean actually costs, what drives the price up, and the finishing step most quotes leave out.",
+        "articles": [
+            ("/guides/pressure-washing-driveway-cost-guide-uk/", "clean-house-driveway.jpg",
+             "A clean paved driveway in front of a house", "Pressure Washing a Driveway: UK Cost Guide",
+             "Real UK price ranges, what actually drives the number, and why the cheapest quote isn't always the cheapest job."),
+            ("/guides/block-paving-re-sanding-guide/", "pressure-washing-steps.jpg",
+             "Pressure washer being used on outdoor paving", "Block Paving Re-Sanding: Why &amp; How Often",
+             "The step that's easy to skip — and the one most likely to be missed by an inexperienced clean."),
+        ],
+    },
+    {
+        "name": "Gutters, Render &amp; Damp",
+        "intro": "Spotting the difference between something cosmetic and something worth acting on, before it turns into a repair.",
+        "articles": [
+            ("/guides/how-often-should-you-clean-your-gutters-uk/", "gutter-downpipe.jpg",
+             "A downpipe fixed to the exterior wall of a house", "How Often Should You Clean Your Gutters?",
+             "What actually affects the schedule, and the signs it needs doing now rather than later."),
+            ("/guides/render-staining-vs-damp-warning-signs/", "garden-path.jpg",
+             "A clean brick driveway bordered by render walls", "Render Staining vs Damp: What's the Risk?",
+             "Most render staining is purely cosmetic. Here's how to tell when it isn't."),
+            ("/guides/why-we-contain-run-off-near-drains/", "gutter-cleaning-service.jpg",
+             "Gutter being cleared of moss and debris with a pressure washer attachment", "Why We Contain Run-off Near Drains",
+             "A quick explainer on something we mention on our service pages without always saying why."),
+        ],
+    },
+    {
+        "name": "Costs, Quotes &amp; Selling",
+        "intro": "How to read a quote properly, and what the research says about cleaning before you put a house on the market.",
+        "articles": [
+            ("/guides/how-to-spot-a-bad-pressure-washing-quote/", "hero-pressure-washing.jpg",
+             "Professional pressure washing equipment in use", "How to Spot a Bad Pressure Washing Quote",
+             "The cheapest number on the page isn't always the cheapest job in the end."),
+            ("/guides/does-cleaning-help-when-selling-a-house/", "clean-house-driveway.jpg",
+             "A clean house with a well-kept driveway", "Does Cleaning Help When Selling a House?",
+             "What the UK survey data actually says, rather than the usual estate agent truism."),
+        ],
+    },
+    {
+        "name": "Local Area &amp; Older Properties",
+        "intro": "Dorset-specific things worth knowing — coastal exposure, and the older buildings around Christchurch and Poole Old Town.",
+        "articles": [
+            ("/guides/coastal-salt-air-property-maintenance/", "poole-harbour.jpg",
+             "Fishing boat in Poole Harbour, Dorset", "Coastal Salt Air &amp; Property Maintenance",
+             "Why a harbourside driveway and an inland one age differently, even a few miles apart."),
+            ("/guides/cleaning-an-older-or-listed-property/", "christchurch-priory.jpg",
+             "Christchurch Priory tower, an example of a historic Dorset building", "Cleaning an Older or Listed Property",
+             "Christchurch and parts of Poole Old Town have real numbers of these — here's what's worth checking first."),
+        ],
+    },
+]
+
+
+def _news_slug(name):
+    """One slug function, used for BOTH the jump-link href and the section id,
+    so an anchor can never point at a heading that doesn't exist."""
+    return (name.lower()
+            .replace("&amp;", "")
+            .replace("&", "")
+            .replace(",", "")
+            .replace("  ", " ")
+            .strip()
+            .replace(" ", "-")
+            .replace("--", "-"))
+
+
+def _news_blocks():
+    blocks = []
+    for cat in NEWS_CATEGORIES:
+        cards = "".join(
+            f"""
+  <a class="service-card" href="{url}">
+    <div class="img-wrap">{img(image, alt, 400, 270)}</div>
+    <h3>{title}</h3>
+    <p>{blurb}</p>
+    <span class="card-link">Read the article &rarr;</span>
+  </a>"""
+            for url, image, alt, title, blurb in cat["articles"]
+        )
+        count = len(cat["articles"])
+        blocks.append(f"""
+<section class="wrap section reveal news-block" id="{_news_slug(cat["name"])}">
+  <div class="news-block-head">
+    <h2>{cat["name"]}</h2>
+    <p>{cat["intro"]}</p>
+    <span class="news-count">{count} article{"s" if count != 1 else ""}</span>
+  </div>
+  <div class="card-grid reveal-stagger">{cards}
+  </div>
+</section>""")
+    return "".join(blocks)
+
+
+_total_articles = sum(len(c["articles"]) for c in NEWS_CATEGORIES)
+
 page(
     "/guides/",
-    title="Exterior Cleaning Guides for Homeowners | PB Softwash",
-    description="Practical guides on gutter maintenance and pressure washing costs for homeowners in Poole, Bournemouth, Christchurch and the wider UK. No sales pitch.",
-    h1="Guides",
-    breadcrumbs=[("Home", "/"), ("Guides", None)],
+    title="News & Info: Exterior Cleaning Guides | PB Softwash",
+    description="Practical guides on roof moss, gutters, driveway cleaning costs and quotes, written for homeowners in Poole, Bournemouth and Christchurch. No sales pitch.",
+    h1="News & Info",
+    breadcrumbs=[("Home", "/"), ("News & Info", None)],
     body_html=f"""
-{simple_hero("Learn", "Guides", "Practical, honest information — not just a reason to call us.")}
-<div class="wrap section reveal">
-<div class="card-grid">
-  <a class="service-card" href="/guides/how-often-should-you-clean-your-gutters-uk/">
-    <div class="img-wrap">{img("gutter-downpipe.jpg", "A downpipe fixed to the exterior wall of a house", 400, 270)}</div>
-    <h3>How Often Should You Clean Your Gutters?</h3>
-    <span class="card-link">Read the guide &rarr;</span>
-  </a>
-  <a class="service-card" href="/guides/pressure-washing-driveway-cost-guide-uk/">
-    <div class="img-wrap">{img("clean-house-driveway.jpg", "A clean paved driveway in front of a house", 400, 270)}</div>
-    <h3>Pressure Washing a Driveway: UK Cost Guide</h3>
-    <span class="card-link">Read the guide &rarr;</span>
-  </a>
-  <a class="service-card" href="/guides/roof-moss-soft-wash-vs-pressure-wash/">
-    <div class="img-wrap">{img("moss-covered-roof.jpg", "A moss-covered tiled roof", 400, 270)}</div>
-    <h3>Roof Moss: Soft Wash vs Pressure Wash</h3>
-    <span class="card-link">Read the guide &rarr;</span>
-  </a>
-  <a class="service-card" href="/guides/does-cleaning-help-when-selling-a-house/">
-    <div class="img-wrap">{img("clean-house-driveway.jpg", "A clean house with a well-kept driveway", 400, 270)}</div>
-    <h3>Does Cleaning Help When Selling a House?</h3>
-    <span class="card-link">Read the guide &rarr;</span>
-  </a>
-  <a class="service-card" href="/guides/coastal-salt-air-property-maintenance/">
-    <div class="img-wrap">{img("poole-harbour.jpg", "Fishing boat in Poole Harbour, Dorset", 400, 270)}</div>
-    <h3>Coastal Salt Air &amp; Property Maintenance</h3>
-    <span class="card-link">Read the guide &rarr;</span>
-  </a>
-  <a class="service-card" href="/guides/render-staining-vs-damp-warning-signs/">
-    <div class="img-wrap">{img("garden-path.jpg", "A clean brick driveway bordered by render walls", 400, 270)}</div>
-    <h3>Render Staining vs Damp: What's the Risk?</h3>
-    <span class="card-link">Read the guide &rarr;</span>
-  </a>
-  <a class="service-card" href="/guides/cleaning-an-older-or-listed-property/">
-    <div class="img-wrap">{img("christchurch-priory.jpg", "Christchurch Priory tower, an example of a historic Dorset building", 400, 270)}</div>
-    <h3>Cleaning an Older or Listed Property</h3>
-    <span class="card-link">Read the guide &rarr;</span>
-  </a>
-  <a class="service-card" href="/guides/why-we-contain-run-off-near-drains/">
-    <div class="img-wrap">{img("gutter-downpipe.jpg", "A downpipe fixed to the exterior wall of a house", 400, 270)}</div>
-    <h3>Why We Contain Run-off Near Drains</h3>
-    <span class="card-link">Read the guide &rarr;</span>
-  </a>
-  <a class="service-card" href="/guides/block-paving-re-sanding-guide/">
-    <div class="img-wrap">{img("pressure-washing-steps.jpg", "Pressure washer being used on outdoor paving", 400, 270)}</div>
-    <h3>Block Paving Re-Sanding: Why &amp; How Often</h3>
-    <span class="card-link">Read the guide &rarr;</span>
-  </a>
-  <a class="service-card" href="/guides/north-facing-shaded-roofs-moss/">
-    <div class="img-wrap">{img("moss-covered-roof.jpg", "Moss concentrated on a shaded roof slope", 400, 270)}</div>
-    <h3>Why North-Facing Roofs Need Cleaning More</h3>
-    <span class="card-link">Read the guide &rarr;</span>
-  </a>
-  <a class="service-card" href="/guides/how-to-spot-a-bad-pressure-washing-quote/">
-    <div class="img-wrap">{img("hero-pressure-washing.jpg", "Professional pressure washing equipment in use", 400, 270)}</div>
-    <h3>How to Spot a Bad Pressure Washing Quote</h3>
-    <span class="card-link">Read the guide &rarr;</span>
-  </a>
-</div>
-</div>
+{simple_hero("Articles & Advice", "News & Info",
+  f"{_total_articles} practical guides on looking after the outside of your home — honest information, not a longer way of asking you to call.")}
+
+<section class="wrap section reveal">
+  <div class="news-cats">
+    <span class="news-cats-label">Jump to:</span>
+    {"".join(f'<a class="news-cat-chip" href="#{_news_slug(c["name"])}">{c["name"]}</a>' for c in NEWS_CATEGORIES)}
+  </div>
+</section>
+
+{_news_blocks()}
 """,
 )
 
@@ -1006,7 +1069,7 @@ page(
     title="How Often Should You Clean Your Gutters? | PB Softwash",
     description="A practical guide to gutter cleaning frequency in the UK: what affects it, the warning signs of a blocked gutter, and why it matters more under trees.",
     h1="How Often Should You Clean Your Gutters?",
-    breadcrumbs=[("Home", "/"), ("Guides", "/guides/"), ("Gutter Cleaning Frequency", None)],
+    breadcrumbs=[("Home", "/"), ("News & Info", "/guides/"), ("Gutter Cleaning Frequency", None)],
     extra_schema=_article_schema_gutter,
     og_image="/images/gutter-downpipe.jpg",
     body_html=f"""
@@ -1056,9 +1119,9 @@ page(
   <p>If you genuinely don't know when your gutters were last cleared, that's the strongest signal to get them checked now rather than wait for a fixed date. A quick inspection costs nothing to arrange, and it turns "once or twice a year" from a guess into an actual schedule based on your roofline, not a generic rule of thumb, or on borrowed assumptions from a neighbour's different property. For the service itself — what's included and how it's carried out — see our <a href="/gutter-and-fascia-cleaning/">gutter &amp; fascia cleaning page</a>.</p>
 </section>
 
-<section class="section quote-section" id="quote">
-  {lead_form("guide-gutter-frequency")}
-</section>
+{quote_section("guide-gutter-frequency", "gutter-cleaning-service.jpg", "Gutter being cleared of moss and debris with a pressure washer attachment",
+  "Not sure how overdue yours is?",
+  "If it's been more than a year, or you can't remember the last clean, it's worth a look before autumn leaves make it worse. Tell us a bit about your property below and we'll call back with a price.")}
 """,
 )
 
@@ -1074,7 +1137,7 @@ page(
     title="Pressure Washing a Driveway: UK Cost Guide | PB Softwash",
     description="What affects the cost of pressure washing a UK driveway: surface type, size, condition and access. General market guidance, not a fixed price list.",
     h1="Pressure Washing a Driveway: UK Cost Guide",
-    breadcrumbs=[("Home", "/"), ("Guides", "/guides/"), ("Driveway Cost Guide", None)],
+    breadcrumbs=[("Home", "/"), ("News & Info", "/guides/"), ("Driveway Cost Guide", None)],
     extra_schema=_article_schema_pw,
     og_image="/images/clean-house-driveway.jpg",
     body_html=f"""
@@ -1114,9 +1177,9 @@ page(
   </div>
 </section>
 
-<section class="section quote-section" id="quote">
-  {lead_form("guide-pw-cost")}
-</section>
+{quote_section("guide-pw-cost", "pressure-washing-steps.jpg", "Pressure washer being used on outdoor paving",
+  "Get an actual number for your driveway",
+  "The ranges above are a starting point — the real price depends on your driveway's size, surface and condition. Send us the details and we'll call back with a proper quote, not just an estimate.")}
 """,
 )
 
@@ -1132,7 +1195,7 @@ page(
     title="Roof Moss: Soft Wash vs Pressure Wash | PB Softwash",
     description="The difference between soft washing and high-pressure jet washing a mossy roof, why manufacturers recommend soft washing, and what to ask a contractor.",
     h1="Roof Moss: Soft Wash vs Pressure Wash",
-    breadcrumbs=[("Home", "/"), ("Guides", "/guides/"), ("Roof Moss: Soft Wash vs Pressure Wash", None)],
+    breadcrumbs=[("Home", "/"), ("News & Info", "/guides/"), ("Roof Moss: Soft Wash vs Pressure Wash", None)],
     extra_schema=_article_schema_roof,
     og_image="/images/moss-covered-roof.jpg",
     body_html=f"""
@@ -1180,9 +1243,9 @@ page(
   <p>This matters more for soft washing than pressure washing specifically, because soft washing relies on the treatment penetrating and killing living moss over the following one to two weeks — treating dormant, dried-out moss in the middle of a dry spell simply gets a slower, less complete result. A high-pressure jet wash doesn't have that dependency, since it's removing moss mechanically rather than biologically — one more reason it's tempting for a quick fix, and one more reason it's still the wrong tool for a roof, regardless of what time of year it's done. Whatever the season, the underlying advice from our <a href="/roof-cleaning/">roof cleaning page</a> stays the same: soft wash, not jet wash.</p>
 </section>
 
-<section class="section quote-section" id="quote">
-  {lead_form("guide-roof-moss")}
-</section>
+{quote_section("guide-roof-moss", "moss-covered-roof.jpg", "Close-up of a moss-covered roof in need of cleaning",
+  "Get your roof looked at properly",
+  "If you're still deciding between soft washing and a full treatment, send us a photo of the moss and roof type below and we'll tell you honestly which approach fits, along with a price.")}
 """,
 )
 
@@ -1195,7 +1258,7 @@ page(
     title="Does Cleaning Help When Selling a House? | PB Softwash",
     description="What UK kerb-appeal research actually says about buyer decisions, and where driveway, render and roof cleaning fits in before viewings and photos.",
     h1="Does Exterior Cleaning Help When Selling a House?",
-    breadcrumbs=[("Home", "/"), ("Guides", "/guides/"), ("Kerb Appeal & Selling", None)],
+    breadcrumbs=[("Home", "/"), ("News & Info", "/guides/"), ("Kerb Appeal & Selling", None)],
     extra_schema=article_schema(
         "Does Exterior Cleaning Help When Selling a House?",
         "What UK kerb-appeal research says about buyer decisions, and where driveway, render and roof cleaning fits in before viewings and photos.",
@@ -1245,9 +1308,9 @@ page(
   <p>Exterior cleaning is one of the cheapest, fastest kerb-appeal improvements available precisely because it's cosmetic — it makes a well-maintained property look as good as it actually is. It won't disguise genuine issues like render cracking, a sagging gutter, or a roof that needs more than a clean. If anything, a clean can make those issues more visible rather than less, since they're no longer hidden under general grime — which is arguably a better outcome for a seller than papering over a problem a survey will find anyway.</p>
 </section>
 
-<section class="section quote-section" id="quote">
-  {lead_form("guide-kerb-appeal")}
-</section>
+{quote_section("guide-kerb-appeal", "clean-house-driveway.jpg", "A clean house with a well-kept driveway",
+  "Getting ready to list your home?",
+  "A clean driveway and roofline is one of the cheapest, fastest improvements you can make before viewings start. Tell us your timeline below and we'll fit around it where we can.")}
 """,
 )
 
@@ -1256,7 +1319,7 @@ page(
     title="Coastal Salt Air & Property Maintenance | PB Softwash",
     description="How salt-laden air from Poole Harbour and Poole Bay affects paving, render and roof tiles, and why coastal properties need more frequent exterior cleaning.",
     h1="Coastal Salt Air & Property Maintenance",
-    breadcrumbs=[("Home", "/"), ("Guides", "/guides/"), ("Coastal Salt Air", None)],
+    breadcrumbs=[("Home", "/"), ("News & Info", "/guides/"), ("Coastal Salt Air", None)],
     extra_schema=article_schema(
         "Coastal Salt Air & Property Maintenance in Poole",
         "How salt-laden air from Poole Harbour and Poole Bay affects paving, render and roof tiles, and why coastal properties need more frequent exterior cleaning.",
@@ -1294,9 +1357,9 @@ page(
   <p>Metal fixings are worth a specific mention: gutter brackets, downpipe clips and similar fittings corrode faster in salt air than the guttering itself typically wears out, so a fitting failing early is more often a coastal-exposure issue than a manufacturing one. It's a small thing to have checked while gutters are being cleared rather than treated as a separate concern, and it costs nothing extra to flag if we notice it during a routine visit.</p>
 </section>
 
-<section class="section quote-section" id="quote">
-  {lead_form("guide-salt-air")}
-</section>
+{quote_section("guide-salt-air", "poole-harbour.jpg", "Fishing boat in Poole Harbour, Dorset",
+  "Closer to the coast than you think?",
+  "Salt air reaches further inland than most people expect, and it changes how often a property needs cleaning. Let us know your postcode below and we'll tell you what we'd recommend for your area.")}
 """,
 )
 
@@ -1305,7 +1368,7 @@ page(
     title="Render Staining vs Damp: What's the Risk? | PB Softwash",
     description="How to tell whether dirty, algae-stained render is just cosmetic or an early warning sign of penetrating damp, and what actually causes render-related damp.",
     h1="Render Staining vs Damp: Cosmetic or Warning Sign?",
-    breadcrumbs=[("Home", "/"), ("Guides", "/guides/"), ("Render Staining vs Damp", None)],
+    breadcrumbs=[("Home", "/"), ("News & Info", "/guides/"), ("Render Staining vs Damp", None)],
     extra_schema=article_schema(
         "Render Staining vs Damp: What's Cosmetic, What Isn't",
         "How to tell whether dirty, algae-stained render is just cosmetic or an early warning sign of penetrating damp, and what actually causes render-related damp.",
@@ -1354,9 +1417,9 @@ page(
   <p>Our render work is limited to cleaning — removing algae, general grime and roof run-off staining from the surface, using the same pressure-matched approach we use on other surfaces. We're not damp specialists and don't diagnose or treat damp itself; if what we find while cleaning looks like more than a surface issue, the honest answer is to say so and point you toward someone who does that specifically, rather than guess at what it might be.</p>
 </section>
 
-<section class="section quote-section" id="quote">
-  {lead_form("guide-render-damp")}
-</section>
+{quote_section("guide-render-damp", "garden-path.jpg", "A clean brick driveway bordered by render walls",
+  "Not sure if it's cosmetic or worth a closer look?",
+  "If you're unsure whether staining is just dirt or something more, send us a photo below and we'll give you a straight answer before quoting anything.")}
 """,
 )
 
@@ -1365,7 +1428,7 @@ page(
     title="Cleaning an Older or Listed Property | PB Softwash",
     description="What to check before cleaning a listed building or a property in a conservation area in the UK, and why the safe first step is always your local council.",
     h1="Cleaning an Older or Listed Property: What to Check",
-    breadcrumbs=[("Home", "/"), ("Guides", "/guides/"), ("Older & Listed Properties", None)],
+    breadcrumbs=[("Home", "/"), ("News & Info", "/guides/"), ("Older & Listed Properties", None)],
     extra_schema=article_schema(
         "Cleaning an Older or Listed Property: What to Check",
         "What to check before cleaning a listed building or a property in a conservation area in the UK, and why the safe first step is always your local council.",
@@ -1408,9 +1471,9 @@ page(
   <p>It's tempting to assume that because soft washing uses lower pressure than a jet wash, it must always be fine on a listed or older property — but consent requirements are often about the method and materials used, not just how forceful the clean is. A biodegradable treatment applied to historic stonework can still be the wrong call if the stone type reacts differently to it than modern render does. This is exactly why we treat older and listed properties as their own case rather than assuming our standard soft-wash approach transfers automatically.</p>
 </section>
 
-<section class="section quote-section" id="quote">
-  {lead_form("guide-listed-property")}
-</section>
+{quote_section("guide-listed-property", "christchurch-priory.jpg", "Christchurch Priory tower, an example of a historic Dorset building",
+  "Older or listed property? Tell us upfront",
+  "We assess the building before recommending a method, and we'll say plainly if something isn't a good fit. Give us the details below and we'll call back with an honest plan and a price.")}
 """,
 )
 
@@ -1419,7 +1482,7 @@ page(
     title="Why We Contain Run-off Near Drains: A Guide | PB Softwash",
     description="A short explainer on surface water drains versus foul sewers, and why containing pressure washing and roof cleaning run-off near drains is good practice.",
     h1="Why We Contain Run-off Near Drains",
-    breadcrumbs=[("Home", "/"), ("Guides", "/guides/"), ("Run-off Near Drains", None)],
+    breadcrumbs=[("Home", "/"), ("News & Info", "/guides/"), ("Run-off Near Drains", None)],
     extra_schema=article_schema(
         "Why We Contain Run-off Near Drains: An Explainer",
         "A short explainer on surface water drains versus foul sewers, and why containing pressure washing and roof cleaning run-off near drains is good practice.",
@@ -1456,9 +1519,9 @@ page(
   <p>For most driveway or patio cleans, there's no drain close enough for this to change how the job is done at all — it only becomes a practical consideration on properties with a gully or road drain within a few feet of the area being cleaned, or on larger commercial forecourts and car parks where drainage is a bigger part of the site. On those jobs, it can mean working in a particular sequence, using drain covers temporarily, or simply being aware of where water is naturally flowing during the clean rather than treating it as an afterthought once the job is already underway.</p>
 </section>
 
-<section class="section quote-section" id="quote">
-  {lead_form("guide-drains")}
-</section>
+{quote_section("guide-drains", "gutter-downpipe.jpg", "A downpipe fixed to the exterior wall of a house",
+  "Careful run-off control, every job",
+  "It's a standard part of how we work, not an upsell. Tell us about your property below and we'll factor in drain locations before we even arrive.")}
 """,
 )
 
@@ -1467,7 +1530,7 @@ page(
     title="Block Paving Re-Sanding: Why & How Often | PB Softwash",
     description="Why block paving joints need re-sanding after a clean, what happens if you skip it, and roughly how often it needs doing on a typical Dorset driveway.",
     h1="Block Paving Re-Sanding: Why & How Often",
-    breadcrumbs=[("Home", "/"), ("Guides", "/guides/"), ("Block Paving Re-Sanding", None)],
+    breadcrumbs=[("Home", "/"), ("News & Info", "/guides/"), ("Block Paving Re-Sanding", None)],
     extra_schema=article_schema(
         "Block Paving Re-Sanding: Why & How Often to Do It",
         "Why block paving joints need re-sanding after a clean, what happens if you skip it, and roughly how often it needs doing on a typical Dorset driveway.",
@@ -1506,9 +1569,9 @@ page(
   </div>
 </section>
 
-<section class="section quote-section" id="quote">
-  {lead_form("guide-resanding")}
-</section>
+{quote_section("guide-resanding", "garden-path.jpg", "A clean, curved brick driveway after pressure washing",
+  "Block paving looking tired again?",
+  "If the joints are visibly low or weeds keep coming back, re-sanding alongside a clean is usually the fix. Let us know the size of the area below and we'll call back with a price.")}
 """,
 )
 
@@ -1517,7 +1580,7 @@ page(
     title="Why North-Facing Roofs Need Cleaning More | PB Softwash",
     description="Why a north-facing or heavily shaded roof slope grows moss faster than a south-facing one, and what that means for how often each side needs attention.",
     h1="Why North-Facing Roofs Need Cleaning More Often",
-    breadcrumbs=[("Home", "/"), ("Guides", "/guides/"), ("North-Facing Roofs & Moss", None)],
+    breadcrumbs=[("Home", "/"), ("News & Info", "/guides/"), ("North-Facing Roofs & Moss", None)],
     extra_schema=article_schema(
         "Why North-Facing Roofs Need Cleaning More Often",
         "Why a north-facing or heavily shaded roof slope grows moss faster than a south-facing one, and what that means for how often each side needs attention.",
@@ -1559,9 +1622,9 @@ page(
   <p>It doesn't mean a north-facing roof is somehow a worse roof, or a bad sign about a property — it's simply orientation, and every roof has one. It's also not a reason to treat a north-facing slope with a harsher method to "catch up" faster; soft washing at the same low pressure applies regardless of which way a slope faces, since the roof covering itself doesn't become more tolerant of high pressure just because it's growing moss faster than the slope beside it.</p>
 </section>
 
-<section class="section quote-section" id="quote">
-  {lead_form("guide-north-facing-roofs")}
-</section>
+{quote_section("guide-north-facing-roofs", "moss-covered-roof.jpg", "Moss concentrated on a shaded roof slope",
+  "Shaded roof needing more attention?",
+  "North-facing and heavily shaded slopes build up moss faster than the rest of the roof, and often get missed. Tell us which side is affected below and we'll quote accordingly.")}
 """,
 )
 
@@ -1570,7 +1633,7 @@ page(
     title="How to Spot a Bad Pressure Washing Quote | PB Softwash",
     description="Red flags to watch for in a UK pressure washing quote: pressure that's too high, no mention of re-sanding, vague pricing, and other signs to ask more questions.",
     h1="How to Spot a Bad Pressure Washing Quote",
-    breadcrumbs=[("Home", "/"), ("Guides", "/guides/"), ("Spotting a Bad Quote", None)],
+    breadcrumbs=[("Home", "/"), ("News & Info", "/guides/"), ("Spotting a Bad Quote", None)],
     extra_schema=article_schema(
         "How to Spot a Bad Pressure Washing Quote",
         "Red flags to watch for in a UK pressure washing quote: pressure that's too high, no mention of re-sanding, vague pricing, and other signs to ask more questions.",
@@ -1619,9 +1682,9 @@ page(
   <p>Beyond the specific questions above, a lot comes down to ordinary judgement: did they actually look at the surface before quoting, or price it purely from a phone description? Did they ask what the surface is made of, or assume? A contractor who's genuinely engaging with the specifics of your driveway or roof, rather than reciting a standard pitch, is usually the one who ends up doing a job matched to what you actually have, not a generic version of it.</p>
 </section>
 
-<section class="section quote-section" id="quote">
-  {lead_form("guide-bad-quotes")}
-</section>
+{quote_section("guide-bad-quotes", "pressure-washing-steps.jpg", "Pressure washer being used to clean grime from outdoor steps",
+  "Compare us against any quote you've had",
+  "If you've already had a number from someone else, send us the details and we'll tell you honestly if it looks right, then give you ours.")}
 """,
 )
 

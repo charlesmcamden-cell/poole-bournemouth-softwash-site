@@ -334,6 +334,26 @@ main > .wrap > .section:first-child, main > .section:first-child { margin-top: 1
 .contact-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 2em; align-items: start; }
 @media (max-width: 780px) { .contact-grid { grid-template-columns: 1fr; } }
 
+/* ---------- News & Info hub (category blocks) ---------- */
+.news-cats { display: flex; flex-wrap: wrap; gap: .55em; align-items: center; }
+.news-cats-label { font-weight: 700; color: var(--ink-soft); font-size: .92rem; margin-right: .2em; }
+.news-cat-chip {
+  display: inline-block; padding: .42em .95em; border: 1px solid var(--line);
+  border-radius: 999px; background: var(--paper); text-decoration: none;
+  font-size: .9rem; font-weight: 700; color: var(--brand-dark);
+  transition: background .15s ease, border-color .15s ease;
+}
+.news-cat-chip:hover { background: var(--paper-tint); border-color: var(--brand); }
+.news-block { scroll-margin-top: 90px; }
+.news-block-head { border-top: 3px solid var(--brand); padding-top: .9em; margin-bottom: 1.4em; position: relative; }
+.news-block-head h2 { margin: 0 0 .25em; }
+.news-block-head p { margin: 0; color: var(--ink-soft); max-width: 62ch; }
+.news-count {
+  position: absolute; top: .9em; right: 0; font-size: .82rem; font-weight: 700;
+  color: var(--ink-soft); text-transform: uppercase; letter-spacing: .04em;
+}
+@media (max-width: 620px) { .news-count { display: none; } }
+
 /* ---------- Stat / trust strip ---------- */
 .trust-strip { display: flex; flex-wrap: wrap; gap: 2em; justify-content: center; text-align: center; }
 .trust-strip .trust-item { max-width: 220px; }
