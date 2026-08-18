@@ -14,23 +14,20 @@ on purpose — status below.
 About, Contact). To change it later: edit those two constants and re-run
 `python3 build.py` — every page updates from this one place.
 
-## 2. Lead form → Formspree
+## 2. Lead form → Formspree — almost done
 
-The quote form on every page POSTs to a placeholder Formspree endpoint.
-To make it actually deliver leads to **leads@eapionageseo.co.uk**:
+Formspree account created ("jet washing form"), and `FORMSPREE_ENDPOINT`
+is set to `https://formspree.io/f/mqpzgqjk` in `generate_site.py` — every
+page's form now POSTs there.
 
-1. Go to https://formspree.io and sign up (free tier covers this).
-2. Create a new form, and verify **leads@eapionageseo.co.uk** as the
-   recipient address (Formspree emails a confirmation link).
-3. Copy the form endpoint it gives you — looks like
-   `https://formspree.io/f/abcdwxyz`.
-4. Open `generate_site.py`, set `FORMSPREE_ENDPOINT` to that URL.
-5. Re-run `python3 build.py`. Because every page shares the one
-   `lead_form()` function, this one change updates the form on all 17 pages.
-6. Submit a test enquiry on the live site once deployed and confirm it
-   lands in the inbox.
-
-No account was created on your behalf — this step needs your login.
+One step left, and it's not one I can do for you: the Email action in the
+form's Workflow tab was still pointing at your personal Gmail by default,
+so I added **leads@eapionageseo.co.uk** as a second linked email on the
+Formspree account (Account → Linked Emails). Formspree just sent a
+verification link to that inbox — click it, then go to
+**Workflow → Email → Settings** on the form and switch the recipient
+dropdown from your Gmail to `leads@eapionageseo.co.uk`. Until that's done,
+submissions succeed but land in the Gmail address, not the leads inbox.
 
 ## 3. Domain
 

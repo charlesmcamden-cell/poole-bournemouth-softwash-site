@@ -33,7 +33,7 @@ BRAND = "Poole & Bournemouth Softwash"
 PHONE_DISPLAY = "0330 122 8391"
 PHONE_TEL = "tel:+443301228391"
 EMAIL = "leads@eapionageseo.co.uk"
-FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID"  # TODO: replace after Formspree signup — see SETUP.md
+FORMSPREE_ENDPOINT = "https://formspree.io/f/mqpzgqjk"
 TODAY = date.today().isoformat()
 
 NAV = [
