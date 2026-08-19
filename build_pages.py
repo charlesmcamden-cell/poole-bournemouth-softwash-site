@@ -809,7 +809,7 @@ page(
     breadcrumbs=[("Home", "/"), ("Contact", None)],
     extra_schema=local_business_schema(),
     body_html=f"""
-{simple_hero("Get in touch", "Contact Us", "The quickest way to get a price is the form below. Prefer to talk? Call or email and we'll do the same thing over the phone.")}
+{simple_hero("Get in touch", "Contact Us", "The quickest way to get a price is the form below. Prefer to talk? Call or email and we'll do the same thing over the phone.", bg_image="map-poole-stylised.svg")}
 
 <section class="wrap section contact-grid reveal">
   <div class="contact-details">
@@ -1044,7 +1044,8 @@ page(
     breadcrumbs=[("Home", "/"), ("News & Info", None)],
     body_html=f"""
 {simple_hero("Articles & Advice", "News & Info",
-  f"{_total_articles} practical guides on looking after the outside of your home — honest information, not a longer way of asking you to call.")}
+  f"{_total_articles} practical guides on looking after the outside of your home — honest information, not a longer way of asking you to call.",
+  bg_image="clean-house-driveway.jpg")}
 
 <section class="wrap section reveal">
   <div class="news-cats">

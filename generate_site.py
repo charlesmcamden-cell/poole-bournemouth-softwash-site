@@ -307,13 +307,20 @@ def page(url_path, title, description, h1, body_html, og_image="/images/hero-pre
     return html
 
 
-def simple_hero(eyebrow, h1_text, subtitle, ctas_html=""):
+def simple_hero(eyebrow, h1_text, subtitle, ctas_html="", bg_image=None):
     """Lighter, photo-free hero band for text-heavy pages (FAQ, guides, legal,
     contact) — full-width like every other hero, but a plain gradient rather
     than a background photo, so long-form reading pages load faster and read
     a bit calmer than the service/area pages."""
+    # Purely decorative texture behind the gradient, so it's aria-hidden rather
+    # than given a role/alt — the heading beside it already carries the meaning.
+    # Photos need slightly different opacity to a line-art SVG to read the same.
+    photo_cls = " is-photo" if bg_image and bg_image.lower().endswith((".jpg", ".jpeg", ".png")) else ""
+    bg = (f'<div class="simple-hero-bg{photo_cls}" aria-hidden="true" '
+          f"style=\"background-image:url('/images/{bg_image}')\"></div>") if bg_image else ""
     return f"""
     <section class="page-hero band-dark" style="position:relative;">
+      {bg}
       <div class="hero-content wrap">
         <p class="eyebrow">{escape(eyebrow)}</p>
         <h1>{escape(h1_text)}</h1>

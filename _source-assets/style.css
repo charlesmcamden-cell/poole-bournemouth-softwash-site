@@ -341,6 +341,16 @@ main > .wrap > .section:first-child, main > .section:first-child { margin-top: 1
 .contact-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 2em; align-items: start; }
 @media (max-width: 780px) { .contact-grid { grid-template-columns: 1fr; } }
 
+/* Decorative faded texture behind the flat gradient heroes (contact = map,
+   news = photo). Sits under .hero-content, which needs its own stacking
+   context or the text would render behind this layer. */
+.simple-hero-bg {
+  position: absolute; inset: 0; background-size: cover; background-position: center;
+  opacity: .22; pointer-events: none;
+}
+.simple-hero-bg.is-photo { opacity: .2; }
+.page-hero .hero-content { position: relative; z-index: 1; }
+
 /* ---------- News & Info hub (category blocks) ---------- */
 .news-cats { display: flex; flex-wrap: wrap; gap: .55em; align-items: center; }
 .news-cats-label { font-weight: 700; color: var(--ink-soft); font-size: .92rem; margin-right: .2em; }
