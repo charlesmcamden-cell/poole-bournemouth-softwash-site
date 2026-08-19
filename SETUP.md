@@ -40,6 +40,25 @@ Once you've registered/confirmed the real domain:
 3. Work through Rule 10 in SEO.md before pointing DNS at it — sitemap
    submitted in Search Console, analytics installed, no 404s.
 
+## 4. Daily blog post automation — live
+
+A scheduled cloud agent ("PB Softwash — daily blog post") runs every day at
+7am Europe/London. Each run: picks one new guide topic not already covered
+in `build_pages.py`'s `NEWS_CATEGORIES`, writes a 600+ word article
+following this site's content rules (no invented reviews/stats/testimonials,
+title 50–60 chars, description 140–160 chars), adds it to the News & Info
+hub, rebuilds the site, commits, and pushes to `origin main`. Vercel is
+connected via GitHub integration and auto-deploys on push — no manual
+deploy step needed.
+
+Manage/pause/delete it at:
+https://claude.ai/code/routines/trig_01878K6pXQaxQQYMYBwm7roa
+
+Note: the daily agent does **not** use `build.py` (see below — it's stale).
+It rebuilds by pointing `generate_site.DIST` at the repo root directly, so
+pages land in their existing `folder/index.html` locations. Any manual
+rebuild should do the same rather than running `python3 build.py` as-is.
+
 ## Other things intentionally left out, not forgotten
 
 - **No testimonials, star ratings, review counts, or "X years in
